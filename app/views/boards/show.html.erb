@@ -63,9 +63,20 @@
 
   <% @active_posts.each do |a_post| %>
     <tr>
-      <td><%= a_post.title %></td>
+      <td><% if current_user != nil %>
+      <% if a_post.user_id == current_user.id %>
+            <%= a_post.title %> <a href="/delete_post/<%= a_post.id %>">Delete post</a>
+            <% else %><%= a_post.title %>
+      <% end %></td>
+      <% else %><%= a_post.title %>
+      <% end %></td>
       <td><%= a_post.body %></td>
-      <td><%= a_post.user_id %></td>
+      <td><% matching_users = User.where({ :id => a_post.user_id }) %>
+
+      <% the_user = matching_users.at(0) %>
+
+      <%= the_user.email %>
+      </td>
       <td><%= a_post.created_at.strftime("%b %e, %Y") %></td>
       <td><%= a_post.expires_on.strftime("%b %e, %Y") %></td>
     </tr>
