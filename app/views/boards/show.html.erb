@@ -11,6 +11,7 @@
 <h2>
   Add a new post
 </h2>
+<% if current_user != nil %> 
 
 <form action="/insert_post" method="post">
   <div>
@@ -43,6 +44,9 @@
     Add post
   </button>
 </form>
+<% else %> 
+<p>You must <a href="/users/sign_in">sign in</a> to add a post.</p>
+<% end %>
 
 <hr>
 
@@ -61,7 +65,7 @@
     <tr>
       <td><%= a_post.title %></td>
       <td><%= a_post.body %></td>
-      <td><%= a_post.body %></td>
+      <td><%= a_post.user_id %></td>
       <td><%= a_post.created_at.strftime("%b %e, %Y") %></td>
       <td><%= a_post.expires_on.strftime("%b %e, %Y") %></td>
     </tr>
