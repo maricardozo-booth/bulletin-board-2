@@ -52,6 +52,7 @@
   <tr>
     <th>Title</th>
     <th>Body</th>
+    <th>Posted by</th>
     <th>Posted on</th>
     <th>Expires on</th>
   </tr>
@@ -59,6 +60,7 @@
   <% @active_posts.each do |a_post| %>
     <tr>
       <td><%= a_post.title %></td>
+      <td><%= a_post.body %></td>
       <td><%= a_post.body %></td>
       <td><%= a_post.created_at.strftime("%b %e, %Y") %></td>
       <td><%= a_post.expires_on.strftime("%b %e, %Y") %></td>
